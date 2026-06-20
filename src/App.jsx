@@ -6,18 +6,13 @@ import Home from "./pages/Home";
 import Discounts from "./pages/Discounts";
 import Services from "./pages/Services";
 import About from "./pages/About";
-import Loxavazan from './pages/Loxavazan';
 import Zambyux from './pages/zambyux';
 import HouseDetails from './pages/HouseDetails';
+import Login from "./pages/Login";
 import "./style.css";
 
 export default function App() {
   const [searchTerm, setSearchTerm] = useState("");
-
-  const allOffers = [
-    { id: 1, location: 'Ապարան', price: '350,000', capacity: 32, image: '...', hasPool: true },
-    { id: 2, location: 'Գառնի', price: '45,000', capacity: 6, image: '...', hasPool: false }
-  ];
 
   return (
     <Router>
@@ -29,11 +24,9 @@ export default function App() {
           <Route path="/discounts" element={<Discounts searchTerm={searchTerm} />} />
           <Route path="/services" element={<Services />} />
           <Route path="/about" element={<About />} />
-          <Route path="/loxavazan" element={<Loxavazan offers={allOffers} />} />
           <Route path="/zambyux" element={<Zambyux />} />
-          
-  
           <Route path="/house/:id" element={<HouseDetails />} />
+          <Route path="/login" element={<Login />} />
         </Routes>
 
         <section className="cta-section">

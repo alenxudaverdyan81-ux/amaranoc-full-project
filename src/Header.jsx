@@ -20,7 +20,7 @@ export default function Header({ searchTerm, setSearchTerm }) {
           <Link to="/services" className="nav-link">Ծառայություններ</Link>
           <Link to="/about" className="nav-link">Մեր մասին</Link>
           <Link to="/zambyux" className="nav-link" style={{ fontWeight: 'bold' }}>
-            🛒 Զամբյուղ ({cartItems.length})
+            ❤️({cartItems.length})
           </Link>
         </nav>
 

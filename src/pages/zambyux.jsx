@@ -22,7 +22,7 @@ export default function Zambyux() {
               <div 
                 key={item.id || item.location || index}
                 onClick={() => {
-                  // Եթե id-ն կա, տանում է id-ով, եթե չկա՝ նոր միայն location-ով
+               
                   const targetId = item.id || item.location;
                   if (targetId) {
                     navigate(`/house/${targetId}`);

@@ -2,20 +2,17 @@ import React from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import useCartStore from './pages/useCartStore';
 
-export default function Card({ id, location, price, capacity, image, rating }) {
+export default function Card({ id, location, price, capacity, image, rating, category }) {
   const navigate = useNavigate();
   const { pathname } = useLocation();
   const toggleFavorite = useCartStore((state) => state.toggleFavorite);
   const cartItems = useCartStore((state) => state.cartItems);
   
-  const isFavorite = pathname.toLowerCase().includes('cart') || cartItems.some(item => 
-    (id && item.id === id) || (item.location === location && item.price === price)
-  );
+  const isFavorite = pathname.toLowerCase().includes('cart') || cartItems.some(item => item.id === id);
 
   const handleCardClick = () => {
-    const houseId = id || location; 
-    if (houseId) {
-      navigate(`/house/${houseId}`);
+    if (id) {
+      navigate(`/house/${id}`);
     }
   };
 
@@ -49,7 +46,7 @@ export default function Card({ id, location, price, capacity, image, rating }) {
           padding: 0;
           display: flex;
           align-items: center;
-          justifyContent: center;
+          justify-content: center;
           transition: transform 0.2s ease;
         }
 
@@ -75,7 +72,7 @@ export default function Card({ id, location, price, capacity, image, rating }) {
         <button 
           onClick={(e) => {
             e.stopPropagation();
-            toggleFavorite({ id, location, price, capacity, image, rating });
+            toggleFavorite({ id, location, price, capacity, image, rating, category });
           }}
           className={`heart-btn-only ${isFavorite ? 'active' : ''}`}
         >
@@ -104,8 +101,8 @@ export default function Card({ id, location, price, capacity, image, rating }) {
 
         <div style={{ padding: '20px' }}>
           <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '10px', color: '#718096', fontSize: '14px' }}>
-            <span>📍 {location}</span>
-            <span>👥 {capacity} անձ</span>
+            <span>📍 {location || "Նշված չէ"}</span>
+            <span>👥 {capacity || 0} անձ</span>
           </div>
           <div style={{ fontWeight: '800', fontSize: '18px', color: '#1a202c' }}>{price} ֏</div>
         </div>
